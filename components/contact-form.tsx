@@ -19,24 +19,20 @@ export function ContactForm() {
   e.preventDefault()
 
   const message = `
-🔆 *Solar Universe – New Quotation Request*
+SOLAR QUOTATION REQUEST
+-----------------------
+Name: ${form.name}
+Location: ${form.location}
+System size: ${form.system}
+Budget: ${form.budget}
+Use case: ${form.useCase}
 
-👤 Name: ${form.name}
-📞 Phone: ${form.phone}
-📧 Email: ${form.email || "Not provided"}
-⚡ Service: ${form.service}
-
-📝 Message:
+Message:
 ${form.message}
-  `.trim()
+`.trim()
 
-  const text = encodeURIComponent(message)
-  setSubmitted(true)
-
-  window.open(
-    `https://wa.me/${site.phoneIntl.replace("+", "")}?text=${text}`,
-    "_blank"
-  )
+  const url = `https://wa.me/${site.phoneIntl.replace("+", "")}?text=${encodeURIComponent(message)}`
+  window.open(url, "_blank")
 }
 
   const fieldClass =

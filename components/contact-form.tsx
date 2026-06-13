@@ -16,18 +16,28 @@ export function ContactForm() {
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    const lines = [
-      `New enquiry from ${form.name || "website"}`,
-      form.phone && `Phone: ${form.phone}`,
-      form.email && `Email: ${form.email}`,
-      form.service && `Service: ${form.service}`,
-      form.message && `Message: ${form.message}`,
-    ].filter(Boolean)
-    const text = encodeURIComponent(lines.join("\n"))
-    setSubmitted(true)
-    window.open(`https://wa.me/${site.phoneIntl.replace("+", "")}?text=${text}`, "_blank")
-  }
+  e.preventDefault()
+
+  const message = `
+🔆 *Solar Universe – New Quotation Request*
+
+👤 Name: ${form.name}
+📞 Phone: ${form.phone}
+📧 Email: ${form.email || "Not provided"}
+⚡ Service: ${form.service}
+
+📝 Message:
+${form.message}
+  `.trim()
+
+  const text = encodeURIComponent(message)
+  setSubmitted(true)
+
+  window.open(
+    `https://wa.me/${site.phoneIntl.replace("+", "")}?text=${text}`,
+    "_blank"
+  )
+}
 
   const fieldClass =
     "w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-ring focus:ring-2 focus:ring-ring/30"

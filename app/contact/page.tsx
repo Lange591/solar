@@ -1,98 +1,80 @@
-import type { Metadata } from "next"
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
+import { Metadata } from "next"
 import { PageHero } from "@/components/page-hero"
 import { ContactForm } from "@/components/contact-form"
 import { site } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Contact | Solar Universe Mutare",
+  title: "Contact Solar Universe | Get a Solar Quote in Mutare",
   description:
-    "Get in touch with Solar Universe in Mutare for a free solar consultation and quote. Call 0770010502 or send us a message.",
+    "Contact Solar Universe for professional solar installation, inverters and battery systems in Mutare, Zimbabwe.",
 }
-
-const details = [
-  {
-    icon: Phone,
-    label: "Call us",
-    value: site.phone,
-    href: `tel:${site.phoneIntl}`,
-  },
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: site.phone,
-    href: `https://wa.me/${site.phoneIntl.replace("+", "")}`,
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: site.location,
-  },
-]
 
 export default function ContactPage() {
   return (
     <>
+      
       <PageHero
-        eyebrow="Contact"
-        title="Let's power your project"
-        description="Tell us what you need and we'll get back to you with friendly advice and a free, no-obligation quote."
+        title="Contact Solar Universe"
+        description="Get in touch with us for solar installations, inverter systems and battery storage solutions."
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-2">
+     
+      <section className="container mx-auto max-w-6xl px-4 py-16">
+        <div className="grid gap-12 md:grid-cols-2">
+          
+          {/* LEFT: CONTACT DETAILS */}
           <div>
-            <h2 className="font-heading text-2xl font-bold text-foreground">Get in touch</h2>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              Our Mutare team is ready to help you design the right solar or electrical solution.
-              Reach out through whichever channel suits you best.
+            <h2 className="mb-4 text-2xl font-semibold">
+              Get in Touch
+            </h2>
+
+            <p className="mb-6 text-muted-foreground">
+              Fill in the form and we’ll respond quickly with a quotation or advice
+              tailored to your needs.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {details.map((d) => {
-                const content = (
-                  <div className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-shadow hover:shadow-md">
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                      <d.icon className="size-5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        {d.label}
-                      </div>
-                      <div className="mt-1 font-medium text-foreground">{d.value}</div>
-                    </div>
-                  </div>
-                )
-                return d.href ? (
-                  <a key={d.label} href={d.href} target={d.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-                    {content}
-                  </a>
-                ) : (
-                  <div key={d.label}>{content}</div>
-                )
-              })}
-            </div>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <strong>Phone / WhatsApp:</strong>{" "}
+                <a
+                  href={`https://wa.me/${site.phoneIntl.replace("+", "")}`}
+                  className="text-primary underline"
+                >
+                  {site.phone}
+                </a>
+              </li>
 
-            <div className="mt-6 flex items-start gap-4 rounded-xl border border-border bg-secondary/50 p-5">
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-                <Clock className="size-5" />
-              </div>
-              <div>
-                <div className="font-medium text-foreground">Business hours</div>
-                <div className="mt-1 text-sm text-muted-foreground">
-                  Monday – Saturday: 8:00 AM – 5:00 PM
-                </div>
-              </div>
+              <li>
+                <strong>Email:</strong>{" "}
+                <a
+                  href={`mailto:${site.email}`}
+                  className="text-primary underline"
+                >
+                  {site.email}
+                </a>
+              </li>
+
+              <li>
+                <strong>Location:</strong> Mutare, Zimbabwe
+              </li>
+            </ul>
+
+          
+            <div className="mt-10 overflow-hidden rounded-2xl border border-border">
+              <iframe
+                title="Solar Universe Mutare"
+                src="https://www.google.com/maps?q=Mutare,Zimbabwe&output=embed"
+                className="h-[300px] w-full border-0"
+                loading="lazy"
+              />
             </div>
           </div>
 
-          <ContactForm />
+          
+          <div>
+            <ContactForm />
+          </div>
+
         </div>
       </section>
     </>

@@ -1,21 +1,20 @@
 import Image from "next/image"
-import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export default function Header() {
+type LogoProps = {
+  className?: string
+}
+
+export default function Logo({ className }: LogoProps) {
   return (
-    <header className="border-b">
-      <div className="mx-auto flex h-20 max-w-7xl items-center px-6">
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/images/logo.png" 
-            alt="Solar Universe"
-            width={240}
-            height={72}
-            className="h-auto w-auto"
-            priority
-          />
-        </Link>
-      </div>
-    </header>
+    <div className={cn("flex items-center", className)}>
+      <Image
+        src="/logo.png"
+        alt="Solar Universe Mutare"
+        width={160}
+        height={48}
+        priority
+      />
+    </div>
   )
 }

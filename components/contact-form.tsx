@@ -1,144 +1,114 @@
 "use client"
 
-import type React from "react"
 import { useState } from "react"
 import { Send, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { site } from "@/lib/site"
 
+type QuoteForm = {
+  name: string
+  phone: string
+  location: string
+  systemSize: string
+  budget: string
+  useCase: string
+  message: string
+}
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
-  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", message: "" })
 
-  function update(field: keyof typeof form) {
+  const [form, setForm] = useState<QuoteForm>({
+    name: "",
+    phone: "",
+    location: "",
+    systemSize: "",
+    budget: "",
+    useCase: "",
+    message: "",
+  })
+
+  function update(field: keyof QuoteForm) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [field]: e.target.value }))
   }
 
   function handleSubmit(e: React.FormEvent) {
-  e.preventDefault()
+    e.preventDefault()
 
-  const message = `
-SOLAR QUOTATION REQUEST
------------------------
+    const text = encodeURIComponent(`
+Solar Universe Website Quote Request
+
 Name: ${form.name}
+Phone: ${form.phone}
 Location: ${form.location}
-System size: ${form.system}
+System size: ${form.systemSize}
 Budget: ${form.budget}
 Use case: ${form.useCase}
 
 Message:
 ${form.message}
-`.trim()
+    `.trim())
 
-  const url = `https://wa.me/${site.phoneIntl.replace("+", "")}?text=${encodeURIComponent(message)}`
-  window.open(url, "_blank")
-}
-
-  const fieldClass =
-    "w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-ring focus:ring-2 focus:ring-ring/30"
+    setSubmitted(true)
+    window.open(`https://wa.me/${site.phoneIntl.replace("+", "")}?text=${text}`, "_blank")
+  }
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-border bg-card p-10 text-center shadow-sm">
-        <CheckCircle2 className="size-12 text-accent" />
-        <h3 className="mt-4 font-heading text-xl font-bold text-foreground">Thank you!</h3>
-        <p className="mt-2 max-w-sm leading-relaxed text-muted-foreground">
-          Your message is on its way. We have opened WhatsApp so you can send it directly, or call
-          us any time on {site.phone}.
+      <div className="rounded-2xl border bg-card p-10 text-center">
+        <CheckCircle2 className="mx-auto size-12 text-accent" />
+        <h3 className="mt-4 text-xl font-bold">Message ready</h3>
+        <p className="mt-2 text-muted-foreground">
+          WhatsApp has opened with your quote details.
         </p>
         <Button className="mt-6" variant="outline" onClick={() => setSubmitted(false)}>
-          Send another message
+          Send another quote
         </Button>
       </div>
     )
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
-    >
-      <div className="grid gap-5">
-        <div className="grid gap-2">
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
-            Full name
-          </label>
-          <input
-            id="name"
-            required
-            value={form.name}
-            onChange={update("name")}
-            className={fieldClass}
-            placeholder="Your name"
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="rounded-2xl border bg-card p-6 space-y-5">
+      <input required placeholder="Full name" onChange={update("name")} className="input" />
+      <input required placeholder="Phone number" onChange={update("phone")} className="input" />
+      <input required placeholder="Location (Town / Area)" onChange={update("location")} className="input" />
 
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div className="grid gap-2">
-            <label htmlFor="phone" className="text-sm font-medium text-foreground">
-              Phone
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              required
-              value={form.phone}
-              onChange={update("phone")}
-              className={fieldClass}
-              placeholder="07X XXX XXXX"
-            />
-          </div>
-          <div className="grid gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-foreground">
-              Email <span className="text-muted-foreground">(optional)</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={form.email}
-              onChange={update("email")}
-              className={fieldClass}
-              placeholder="you@example.com"
-            />
-          </div>
-        </div>
+      <select required onChange={update("systemSize")} className="input">
+        <option value="">System size</option>
+        <option>3kVA</option>
+        <option>5kVA</option>
+        <option>10kVA+</option>
+        <option>Not sure</option>
+      </select>
 
-        <div className="grid gap-2">
-          <label htmlFor="service" className="text-sm font-medium text-foreground">
-            Service needed
-          </label>
-          <select id="service" value={form.service} onChange={update("service")} className={fieldClass}>
-            <option value="">Select a service</option>
-            <option>Solar Panel Installation</option>
-            <option>Battery Storage &amp; Inverters</option>
-            <option>Solar Water Heating</option>
-            <option>Maintenance &amp; Repairs</option>
-            <option>Electrical Engineering</option>
-            <option>Energy Consulting</option>
-          </select>
-        </div>
+      <select required onChange={update("budget")} className="input">
+        <option value="">Budget range</option>
+        <option>Under $2,000</option>
+        <option>$2,000 – $5,000</option>
+        <option>$5,000+</option>
+      </select>
 
-        <div className="grid gap-2">
-          <label htmlFor="message" className="text-sm font-medium text-foreground">
-            Message
-          </label>
-          <textarea
-            id="message"
-            required
-            rows={4}
-            value={form.message}
-            onChange={update("message")}
-            className={fieldClass}
-            placeholder="Tell us about your project or energy needs..."
-          />
-        </div>
+      <select required onChange={update("useCase")} className="input">
+        <option value="">Use case</option>
+        <option>Home</option>
+        <option>Business</option>
+        <option>Farm</option>
+      </select>
 
-        <Button type="submit" size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-          <Send className="size-4" />
-          Send via WhatsApp
-        </Button>
-      </div>
+      <textarea
+        required
+        rows={4}
+        placeholder="Additional notes"
+        onChange={update("message")}
+        className="input"
+      />
+
+      <Button type="submit" size="lg" className="w-full bg-accent">
+        <Send className="size-4" />
+        Send Quote via WhatsApp
+      </Button>
     </form>
   )
 }

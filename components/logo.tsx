@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 type LogoProps = {
   className?: string
-  /** Tailwind height class, e.g. "h-12". Width scales automatically. */
+  /* @ Lange coding */
   sizeClassName?: string
 }
 

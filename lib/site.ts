@@ -1,4 +1,4 @@
-// lib/site.ts
+// @ Lange coding
 
 export const site = {
   name: "Solar Universe",
@@ -173,9 +173,67 @@ export const gallery = [
 export const team = [
   {
     name: "Our Lead Engineer",
-    role: "Founder & Lead Solar Engineer",
+    role: "Solar Technician",
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.57%20%281%29-GWf7l1neRwmt9lavgbHs3SV9XkKZYG.jpeg",
     bio: "On site for every commissioning — designing, installing and testing each system personally so it performs for years.",
+  },
+]
+
+export const testimonials = [
+  {
+    quote:
+      "Solar Universe installed a 5kVA hybrid system at our home in Murambi. We have not felt a single load-shedding cut since. Clean work and honest pricing.",
+    name: "Tawanda M.",
+    location: "Murambi, Mutare",
+    initials: "TM",
+  },
+  {
+    quote:
+      "Our farm runs entirely off the off-grid system they designed. The team sized everything perfectly and the batteries still hit full charge by midday.",
+    name: "Rudo C.",
+    location: "Odzi, Manicaland",
+    initials: "RC",
+  },
+  {
+    quote:
+      "From the solar geyser to the inverter backup, every install was tidy and professional. They explained exactly how the system works before leaving.",
+    name: "Brian N.",
+    location: "Dangamvura, Mutare",
+    initials: "BN",
+  },
+]
+
+export const faqs = [
+  {
+    q: "How long does a typical solar installation take?",
+    a: "Most residential systems are installed and commissioned within one to two days after the site assessment, depending on system size and roof complexity.",
+  },
+  {
+    q: "Will my system keep working during load-shedding?",
+    a: "Yes. Our hybrid inverter and lithium battery setups automatically switch to stored power the instant the grid drops, so your essential circuits stay on.",
+  },
+  {
+    q: "How much can I expect to save on my ZESA bill?",
+    a: "Savings depend on your usage, but most homes offset 60–90% of their grid consumption. Use the calculator above for an estimate tailored to your monthly spend.",
+  },
+  {
+    q: "What warranty and aftercare do you offer?",
+    a: "Panels carry manufacturer performance warranties of up to 25 years, inverters and batteries up to 10 years, and we provide ongoing local maintenance and support.",
+  },
+]
+
+export const coverage = [
+  {
+    title: "Mutare & Suburbs",
+    desc: "Full-service installation and rapid aftercare across Murambi, Dangamvura, Chikanga and the CBD.",
+  },
+  {
+    title: "Manicaland Province",
+    desc: "Rooftop and ground-mount systems for homes and businesses in Rusape, Chipinge, Nyanga and beyond.",
+  },
+  {
+    title: "Farms & Off-Grid Sites",
+    desc: "Standalone off-grid and hybrid systems for agricultural, mining and remote properties without reliable grid power.",
   },
 ]

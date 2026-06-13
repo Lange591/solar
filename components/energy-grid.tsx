@@ -17,9 +17,9 @@ export function EnergyGrid() {
   const coreRef = useRef<HTMLDivElement>(null)
   const particleRefs = useRef<Array<HTMLDivElement | null>>([])
 
-  // Target pointer position (relative to the container), updated on pointer move.
+  // @ Lange coding
   const target = useRef({ x: 0.5, y: 0.45, active: false })
-  // Smoothed position used for rendering, lerped toward the target each frame.
+  // @ Lange coding
   const smooth = useRef({ x: 0.5, y: 0.45 })
   const rafId = useRef<number | null>(null)
 
@@ -30,7 +30,7 @@ export function EnergyGrid() {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-    // Fewer particles on small/touch screens for smooth performance.
+    // @ Lange coding
     const isCompact = window.innerWidth < 768
     const count = prefersReduced ? 0 : isCompact ? 26 : 48
 
@@ -68,11 +68,11 @@ export function EnergyGrid() {
     let t = 0
     const render = () => {
       t += 0.0045
-      // When the user hasn't interacted yet, gently drift the glow in a figure-eight.
+      // @ Lange coding
       const tx = target.current.active ? target.current.x : 0.5 + Math.sin(t) * 0.22
       const ty = target.current.active ? target.current.y : 0.45 + Math.sin(t * 1.7) * 0.16
 
-      // Critically-damped easing toward the target for a premium, trailing feel.
+      // @ Lange coding
       smooth.current.x += (tx - smooth.current.x) * 0.08
       smooth.current.y += (ty - smooth.current.y) * 0.08
 
@@ -87,7 +87,7 @@ export function EnergyGrid() {
         coreRef.current.style.transform = `translate3d(${px - 90}px, ${py - 90}px, 0)`
       }
 
-      // Scale + brighten particles near the light source.
+      // @ Lange coding
       for (let i = 0; i < particleRefs.current.length; i++) {
         const el = particleRefs.current[i]
         if (!el) continue
@@ -125,7 +125,7 @@ export function EnergyGrid() {
         <rect width="100%" height="100%" fill="url(#energyLines)" />
       </svg>
 
-      {/* Soft ambient glow that trails the pointer (or drifts on its own on touch devices) */}
+      {/* @ Lange coding */}
       <div
         ref={glowRef}
         className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full will-change-transform"
@@ -133,7 +133,7 @@ export function EnergyGrid() {
           background: "radial-gradient(circle, rgba(234,179,8,0.12) 0%, rgba(234,179,8,0) 70%)",
         }}
       />
-      {/* Bright concentrated core */}
+      {/* @ Lange coding */}
       <div
         ref={coreRef}
         className="absolute left-0 top-0 h-44 w-44 rounded-full will-change-transform"

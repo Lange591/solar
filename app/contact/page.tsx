@@ -15,13 +15,12 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="Let’s power your project"
+        title="Let's power your project"
         description="Speak directly with qualified solar and electrical engineers in Mutare. Free consultation, honest advice."
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <div className="grid gap-12 lg:grid-cols-2">
-          {/* LEFT */}
           <div>
             <h2 className="font-heading text-2xl font-bold">
               Contact details
@@ -30,7 +29,7 @@ export default function ContactPage() {
             <div className="mt-6 space-y-4">
               <a
                 href={`tel:${site.phoneIntl}`}
-                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md transition-all"
               >
                 <Phone className="text-accent" />
                 <span>{site.phone}</span>
@@ -40,7 +39,7 @@ export default function ContactPage() {
                 href={`https://wa.me/${site.phoneIntl.replace("+", "")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md transition-all"
               >
                 <MessageCircle className="text-green-500" />
                 <span>Chat on WhatsApp</span>
@@ -48,7 +47,7 @@ export default function ContactPage() {
 
               <a
                 href={`mailto:${site.email}`}
-                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md transition-all"
               >
                 <Mail className="text-accent" />
                 <span>{site.email}</span>
@@ -66,7 +65,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* RIGHT */}
           <ContactForm />
         </div>
       </section>

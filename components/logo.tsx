@@ -1,20 +1,24 @@
 import Image from "next/image"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 type LogoProps = {
   className?: string
 }
 
-export default function Logo({ className }: LogoProps) {
+export function Logo({ className }: LogoProps) {
   return (
-    <div className={cn("flex items-center", className)}>
+    <Link href="/" className={cn("flex items-center", className)}>
       <Image
         src="/logo.png"
-        alt="Solar Universe Mutare"
-        width={160}
-        height={48}
+        alt="Solar Universe"
+        width={800}
+        height={200}
         priority
+        className="h-32 w-auto md:h-48 object-contain"
       />
-    </div>
+    </Link>
   )
 }
+
+export default Logo

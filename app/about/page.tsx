@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { Target, Eye, Heart, CheckCircle2 } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CtaSection } from "@/components/cta-section"
+import { Button } from "@/components/ui/button"
 import { gallery } from "@/lib/site"
 
 export const metadata: Metadata = {

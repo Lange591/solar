@@ -128,3 +128,30 @@
     @apply font-sans;
   }
 }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(15px);
+  }
+  50% {
+    transform: translateY(0px) translateX(0px);
+  }
+  75% {
+    transform: translateY(15px) translateX(-15px);
+  }
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button, a {
+  transition: all 0.2s ease;
+}

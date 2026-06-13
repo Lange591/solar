@@ -123,7 +123,7 @@ export default function HomePage() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
             {/* Floating credibility card */}
-            <div className="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-gray-900/80 px-4 py-3 shadow-xl backdrop-blur-md">
+            <div className="absolute bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-gray-900/80 px-4 py-3 shadow-xl backdrop-blur-md sm:-bottom-5 sm:-left-5">
               <div className="flex size-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                 <Sparkles className="size-5" />
               </div>

@@ -1,41 +1,120 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+
+type Particle = {
+  left: number
+  top: number
+  delay: string
+  duration: string
+  baseOpacity: number
+  size: number
+}
 
 export function EnergyGrid() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState<Array<{ 
-    left: string; 
-    top: string; 
-    delay: string; 
-    duration: string; 
-    opacity: number;
-    size: number;
-  }>>([])
+  const containerRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+  const coreRef = useRef<HTMLDivElement>(null)
+  const particleRefs = useRef<Array<HTMLDivElement | null>>([])
+
+  // Target pointer position (relative to the container), updated on pointer move.
+  const target = useRef({ x: 0.5, y: 0.45, active: false })
+  // Smoothed position used for rendering, lerped toward the target each frame.
+  const smooth = useRef({ x: 0.5, y: 0.45 })
+  const rafId = useRef<number | null>(null)
+
+  const [particles, setParticles] = useState<Particle[]>([])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    // Fewer particles on small/touch screens for smooth performance.
+    const isCompact = window.innerWidth < 768
+    const count = prefersReduced ? 0 : isCompact ? 26 : 48
+
+    setParticles(
+      Array.from({ length: count }, () => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: `${Math.random() * 8}s`,
+        duration: `${3 + Math.random() * 6}s`,
+        baseOpacity: 0.3 + Math.random() * 0.6,
+        size: 1 + Math.random() * 3,
+      })),
+    )
+
+    if (prefersReduced) return
+
+    const container = containerRef.current
+    if (!container) return
+
+    const setTargetFromEvent = (clientX: number, clientY: number) => {
+      const rect = container.getBoundingClientRect()
+      target.current.x = (clientX - rect.left) / rect.width
+      target.current.y = (clientY - rect.top) / rect.height
+      target.current.active = true
     }
-    window.addEventListener("mousemove", handleMouseMove)
-    
-    const newParticles = [...Array(45)].map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 8}s`,
-      duration: `${3 + Math.random() * 6}s`,
-      opacity: 0.3 + Math.random() * 0.7,
-      size: 1 + Math.random() * 3,
-    }))
-    setParticles(newParticles)
-    
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+
+    const onPointerMove = (e: PointerEvent) => setTargetFromEvent(e.clientX, e.clientY)
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches[0]) setTargetFromEvent(e.touches[0].clientX, e.touches[0].clientY)
+    }
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true })
+    window.addEventListener("touchmove", onTouchMove, { passive: true })
+
+    let t = 0
+    const render = () => {
+      t += 0.0045
+      // When the user hasn't interacted yet, gently drift the glow in a figure-eight.
+      const tx = target.current.active ? target.current.x : 0.5 + Math.sin(t) * 0.22
+      const ty = target.current.active ? target.current.y : 0.45 + Math.sin(t * 1.7) * 0.16
+
+      // Critically-damped easing toward the target for a premium, trailing feel.
+      smooth.current.x += (tx - smooth.current.x) * 0.08
+      smooth.current.y += (ty - smooth.current.y) * 0.08
+
+      const rect = container.getBoundingClientRect()
+      const px = smooth.current.x * rect.width
+      const py = smooth.current.y * rect.height
+
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate3d(${px - 250}px, ${py - 250}px, 0)`
+      }
+      if (coreRef.current) {
+        coreRef.current.style.transform = `translate3d(${px - 90}px, ${py - 90}px, 0)`
+      }
+
+      // Scale + brighten particles near the light source.
+      for (let i = 0; i < particleRefs.current.length; i++) {
+        const el = particleRefs.current[i]
+        if (!el) continue
+        const ex = (parseFloat(el.dataset.left || "0") / 100) * rect.width
+        const ey = (parseFloat(el.dataset.top || "0") / 100) * rect.height
+        const dist = Math.hypot(ex - px, ey - py)
+        const proximity = Math.max(0, 1 - Math.min(260, dist) / 260)
+        const scale = 1 + proximity * 1.6
+        el.style.transform = `scale(${scale})`
+        el.style.boxShadow = `0 0 ${6 + proximity * 14}px rgba(234,179,8,${0.4 + proximity * 0.4})`
+      }
+
+      rafId.current = requestAnimationFrame(render)
+    }
+    rafId.current = requestAnimationFrame(render)
+
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove)
+      window.removeEventListener("touchmove", onTouchMove)
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+    }
   }, [])
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      
+
       <svg className="absolute inset-0 h-full w-full opacity-15" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="energyLines" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -46,50 +125,44 @@ export function EnergyGrid() {
         <rect width="100%" height="100%" fill="url(#energyLines)" />
       </svg>
 
+      {/* Soft ambient glow that trails the pointer (or drifts on its own on touch devices) */}
       <div
-        className="absolute h-[500px] w-[500px] rounded-full transition-all duration-300 ease-out"
+        ref={glowRef}
+        className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full will-change-transform"
         style={{
           background: "radial-gradient(circle, rgba(234,179,8,0.12) 0%, rgba(234,179,8,0) 70%)",
-          transform: `translate(${mousePosition.x - 250}px, ${mousePosition.y - 250}px)`,
         }}
       />
-
+      {/* Bright concentrated core */}
       <div
-        className="absolute h-40 w-40 rounded-full transition-all duration-200 ease-out"
+        ref={coreRef}
+        className="absolute left-0 top-0 h-44 w-44 rounded-full will-change-transform"
         style={{
-          background: "radial-gradient(circle, rgba(234,179,8,0.25) 0%, rgba(234,179,8,0) 80%)",
-          transform: `translate(${mousePosition.x - 80}px, ${mousePosition.y - 80}px)`,
+          background: "radial-gradient(circle, rgba(234,179,8,0.28) 0%, rgba(234,179,8,0) 80%)",
         }}
       />
 
       <div className="absolute inset-0">
-        {particles.map((particle, i) => {
-          const particleX = (parseFloat(particle.left) / 100) * (typeof window !== 'undefined' ? window.innerWidth : 1920)
-          const particleY = (parseFloat(particle.top) / 100) * (typeof window !== 'undefined' ? window.innerHeight : 1080)
-          const distanceToMouse = Math.sqrt(
-            Math.pow(particleX - mousePosition.x, 2) +
-            Math.pow(particleY - mousePosition.y, 2)
-          )
-          const scale = Math.max(0.5, Math.min(2.5, 1 + (250 - Math.min(250, distanceToMouse)) / 200))
-          
-          return (
-            <div
-              key={i}
-              className="absolute rounded-full bg-yellow-400"
-              style={{
-                left: particle.left,
-                top: particle.top,
-                width: `${particle.size * (mousePosition.x ? scale : 1)}px`,
-                height: `${particle.size * (mousePosition.x ? scale : 1)}px`,
-                animation: `float ${particle.duration} ease-in-out infinite`,
-                animationDelay: particle.delay,
-                opacity: particle.opacity * (mousePosition.x ? (0.8 + scale * 0.3) : 1),
-                boxShadow: `0 0 ${6 * (mousePosition.x ? scale : 1)}px rgba(234,179,8,0.5)`,
-                transition: "all 0.1s ease-out",
-              }}
-            />
-          )
-        })}
+        {particles.map((p, i) => (
+          <div
+            key={i}
+            ref={(el) => {
+              particleRefs.current[i] = el
+            }}
+            data-left={p.left}
+            data-top={p.top}
+            className="absolute rounded-full bg-yellow-400 will-change-transform"
+            style={{
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              opacity: p.baseOpacity,
+              animation: `float ${p.duration} ease-in-out infinite`,
+              animationDelay: p.delay,
+            }}
+          />
+        ))}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent" />

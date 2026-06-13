@@ -62,7 +62,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto max-w-6xl px-4 py-5 text-center text-xs text-primary-foreground/70 sm:px-6">
-          {`© ${new Date().getFullYear()} Solar Universe. All rights reserved.`}
+          {`Solar Universe. All rights reserved.`}
         </div>
       </div>
     </footer>

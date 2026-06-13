@@ -10,6 +10,7 @@ import {
 } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CtaSection } from "@/components/cta-section"
+import { PackageBuilder } from "@/components/package-builder"
 import { services } from "@/lib/site"
 
 export const metadata: Metadata = {

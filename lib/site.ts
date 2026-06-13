@@ -122,51 +122,61 @@ export const gallery = [
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59-aXmOS9z7pB3VSXH8S4tCwz3HIs1SVJ.jpeg",
     alt: "Solar panel array installed on a residential tiled roof in Mutare",
     label: "Whole-home rooftop system",
+    category: "Rooftop Solar",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.58-ZG11nTgQ08iScjeqa11naFyDzc6zKN.jpeg",
     alt: "Solar PV panels mounted alongside a solar geyser on a red roof",
     label: "Solar PV & water heating",
+    category: "Solar Water Heating",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%282%29-iv6TtnlZ1DcAARpY8OQv5dxUnVFSyN.jpeg",
     alt: "High-efficiency monocrystalline solar panel on a terracotta tiled roof",
     label: "Residential rooftop array",
+    category: "Rooftop Solar",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.00-ABwITGicjFeEvnLFxV5f7G6LO2YpYS.jpeg",
     alt: "Long run of solar panels installed on a home roof overlooking a garden",
     label: "Rooftop array, Manicaland",
+    category: "Rooftop Solar",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.02-50znVIMu3xnP2t72aKVPRCzYcFyNDB.jpeg",
     alt: "Monocrystalline solar panel neatly mounted on a tiled roof",
     label: "Tiled-roof installation",
+    category: "Rooftop Solar",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.54-rot7qZ1cEVZ6U5i7769RDlWScBoN0C.jpeg",
     alt: "MUST hybrid inverter, distribution board and LiFePO4 battery module installed indoors",
     label: "Inverter & battery setup",
+    category: "Inverters & Batteries",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.01%20%282%29-dyRX6NiS3iKxtAWLDtqc4MJkkulEby.jpeg",
     alt: "MUST solar inverter wired to a SAKO lithium battery power bank",
     label: "Hybrid inverter & lithium storage",
+    category: "Inverters & Batteries",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.55-xNwUsHO9lrEHQ5sWZH3RPOEnZUQkRd.jpeg",
     alt: "MUST hybrid inverter and battery module with live status indicators",
     label: "Backup power system",
+    category: "Inverters & Batteries",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.56%20%281%29-Q33vyrybJ1fHdkjGKvDXiGtxpqeJE0.jpeg",
     alt: "MUST inverter stacked above two SAKO lithium battery power banks",
     label: "Stacked lithium battery bank",
+    category: "Inverters & Batteries",
   },
   {
     src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%281%29-671icpIi9ZRbF5VIkexrlAoL3bcOH3.jpeg",
     alt: "High-capacity SAKO lithium storage paired with a MUST inverter",
     label: "High-capacity storage",
+    category: "Inverters & Batteries",
   },
 ]
 
@@ -221,6 +231,68 @@ export const faqs = [
     q: "What warranty and aftercare do you offer?",
     a: "Panels carry manufacturer performance warranties of up to 25 years, inverters and batteries up to 10 years, and we provide ongoing local maintenance and support.",
   },
+]
+
+export const packages = [
+  {
+    name: "Essential",
+    size: "3kVA",
+    inverter: "3kW hybrid inverter",
+    battery: "2.4 kWh lithium",
+    panels: "4 × 460W panels",
+    backup: "4–6 hrs essentials",
+    priceFrom: 1800,
+    appliances: ["Lights & sockets", "TV & WiFi", "Phone & laptop charging", "Fridge (eco)"],
+    bestFor: "Small homes & apartments riding out load-shedding.",
+  },
+  {
+    name: "Family",
+    size: "5kVA",
+    inverter: "5kW hybrid inverter",
+    battery: "5.1 kWh lithium",
+    panels: "6 × 460W panels",
+    backup: "8–10 hrs whole home",
+    priceFrom: 3200,
+    appliances: ["Everything in Essential", "Full lighting & sockets", "Fridge & freezer", "Microwave & TV"],
+    bestFor: "The typical family home that wants to forget the grid exists.",
+    popular: true,
+  },
+  {
+    name: "Large Home",
+    size: "7.5kVA",
+    inverter: "7.5kW hybrid inverter",
+    battery: "10.2 kWh lithium",
+    panels: "10 × 460W panels",
+    backup: "10–14 hrs heavy use",
+    priceFrom: 5400,
+    appliances: ["Everything in Family", "Borehole pump", "Washing machine", "Solar geyser support"],
+    bestFor: "Large households with boreholes, geysers and heavier loads.",
+  },
+  {
+    name: "Business / Farm",
+    size: "10kVA+",
+    inverter: "10kW+ (parallel ready)",
+    battery: "15+ kWh lithium",
+    panels: "14+ × 460W panels",
+    backup: "Full off-grid capable",
+    priceFrom: 8500,
+    appliances: ["Everything in Large Home", "Three-phase support", "Irrigation & machinery", "Office equipment"],
+    bestFor: "Businesses, farms and off-grid sites needing serious capacity.",
+  },
+]
+
+export const milestones = [
+  { year: "2015", title: "First rooftop install", desc: "Our lead engineer commissions the first residential PV array in Mutare." },
+  { year: "2018", title: "Hybrid storage era", desc: "We move from grid-tied to lithium hybrid systems for true load-shedding immunity." },
+  { year: "2021", title: "Beyond the city", desc: "Off-grid systems roll out to farms and remote sites across Manicaland." },
+  { year: "2024", title: "150+ systems live", desc: "Over 150 installations generating clean power every single day." },
+]
+
+export const impact = [
+  { value: 150, suffix: "+", label: "Systems installed" },
+  { value: 850, suffix: " kW", label: "Solar capacity deployed" },
+  { value: 1100, suffix: " t", label: "CO₂ avoided per year" },
+  { value: 100, suffix: "%", label: "Clients still powered" },
 ]
 
 export const coverage = [

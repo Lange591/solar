@@ -1,12 +1,20 @@
+// lib/site.ts
+
 export const site = {
   name: "Solar Universe",
   tagline: "Powering Mutare with Clean, Reliable Solar Energy",
+
+  
+  description:
+    "Solar Universe is a Mutare-based solar engineering company delivering reliable solar installations, battery storage solutions, and professional energy consulting for homes, farms, and businesses.",
+
   phone: "0770010502",
   phoneIntl: "+263770010502",
+  address: "Mutare, Zimbabwe",
   location: "Mutare, Zimbabwe",
   email: "info@solaruniverse.co.zw",
 
-  // ✅ REQUIRED BY HEADER BUTTON
+  
   cta: {
     label: "Get a Quote",
     href: "/contact",
@@ -93,23 +101,19 @@ export const services = [
 export const steps = [
   {
     title: "Consultation",
-    desc:
-      "We discuss your energy needs, budget and goals to understand the right solution for you.",
+    desc: "We discuss your energy needs, budget and goals to understand the right solution for you.",
   },
   {
     title: "Site Assessment",
-    desc:
-      "Our engineers survey your roof, electrical setup and consumption to design the system.",
+    desc: "Our engineers survey your roof, electrical setup and consumption to design the system.",
   },
   {
     title: "Custom Proposal",
-    desc:
-      "You receive a clear quote with system specs, expected savings and timelines.",
+    desc: "You receive a clear quote with system specs, expected savings and timelines.",
   },
   {
     title: "Installation & Handover",
-    desc:
-      "Our team installs, tests and commissions your system, then shows you how it works.",
+    desc: "Our team installs, tests and commissions your system, then shows you how it works.",
   },
 ]
 

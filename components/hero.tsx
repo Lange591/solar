@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-background">
       <div className="mx-auto max-w-7xl px-6 py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">
-          {/* TEXT */}
+         
           <div>
             <h1 className="text-4xl font-bold tracking-tight">
               Reliable Solar & Electrical Engineering
@@ -15,10 +15,10 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* IMAGE */}
+          
           <div className="relative">
             <Image
-              src="/images/hero.jpg"   // NOTE LEADING /
+              src="/images/hero.jpg"   
               alt="Solar installation"
               width={800}
               height={600}

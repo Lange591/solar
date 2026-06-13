@@ -1,80 +1,73 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { ContactForm } from "@/components/contact-form"
 import { site } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "Contact Solar Universe | Get a Solar Quote in Mutare",
+  title: "Contact | Solar Universe Mutare",
   description:
-    "Contact Solar Universe for professional solar installation, inverters and battery systems in Mutare, Zimbabwe.",
+    "Get in touch with Solar Universe in Mutare for a free solar consultation and quotation.",
 }
 
 export default function ContactPage() {
   return (
     <>
-      
       <PageHero
-        title="Contact Solar Universe"
-        description="Get in touch with us for solar installations, inverter systems and battery storage solutions."
+        eyebrow="Contact"
+        title="Let’s power your project"
+        description="Speak directly with qualified solar and electrical engineers in Mutare. Free consultation, honest advice."
       />
 
-     
-      <section className="container mx-auto max-w-6xl px-4 py-16">
-        <div className="grid gap-12 md:grid-cols-2">
-          
-          {/* LEFT: CONTACT DETAILS */}
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* LEFT */}
           <div>
-            <h2 className="mb-4 text-2xl font-semibold">
-              Get in Touch
+            <h2 className="font-heading text-2xl font-bold">
+              Contact details
             </h2>
 
-            <p className="mb-6 text-muted-foreground">
-              Fill in the form and we’ll respond quickly with a quotation or advice
-              tailored to your needs.
-            </p>
+            <div className="mt-6 space-y-4">
+              <a
+                href={`tel:${site.phoneIntl}`}
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+              >
+                <Phone className="text-accent" />
+                <span>{site.phone}</span>
+              </a>
 
-            <ul className="space-y-4 text-sm">
-              <li>
-                <strong>Phone / WhatsApp:</strong>{" "}
-                <a
-                  href={`https://wa.me/${site.phoneIntl.replace("+", "")}`}
-                  className="text-primary underline"
-                >
-                  {site.phone}
-                </a>
-              </li>
+              <a
+                href={`https://wa.me/${site.phoneIntl.replace("+", "")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+              >
+                <MessageCircle className="text-green-500" />
+                <span>Chat on WhatsApp</span>
+              </a>
 
-              <li>
-                <strong>Email:</strong>{" "}
-                <a
-                  href={`mailto:${site.email}`}
-                  className="text-primary underline"
-                >
-                  {site.email}
-                </a>
-              </li>
+              <a
+                href={`mailto:${site.email}`}
+                className="flex items-center gap-4 rounded-xl border p-4 hover:shadow-md"
+              >
+                <Mail className="text-accent" />
+                <span>{site.email}</span>
+              </a>
 
-              <li>
-                <strong>Location:</strong> Mutare, Zimbabwe
-              </li>
-            </ul>
+              <div className="flex items-center gap-4 rounded-xl border p-4">
+                <MapPin className="text-accent" />
+                <span>{site.location}</span>
+              </div>
 
-          
-            <div className="mt-10 overflow-hidden rounded-2xl border border-border">
-              <iframe
-                title="Solar Universe Mutare"
-                src="https://www.google.com/maps?q=Mutare,Zimbabwe&output=embed"
-                className="h-[300px] w-full border-0"
-                loading="lazy"
-              />
+              <div className="flex items-center gap-4 rounded-xl border p-4">
+                <Clock className="text-accent" />
+                <span>Mon – Sat, 8:00 – 17:00</span>
+              </div>
             </div>
           </div>
 
-          
-          <div>
-            <ContactForm />
-          </div>
-
+          {/* RIGHT */}
+          <ContactForm />
         </div>
       </section>
     </>

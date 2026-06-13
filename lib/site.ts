@@ -119,43 +119,63 @@ export const steps = [
 
 export const gallery = [
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.00-7uo81urwNLBgj2lcqgZ3909yBNHjqM.jpeg",
-    alt: "Solar panels mounted on a residential metal roof in Mutare",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59-aXmOS9z7pB3VSXH8S4tCwz3HIs1SVJ.jpeg",
+    alt: "Solar panel array installed on a residential tiled roof in Mutare",
+    label: "Whole-home rooftop system",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.58-ZG11nTgQ08iScjeqa11naFyDzc6zKN.jpeg",
+    alt: "Solar PV panels mounted alongside a solar geyser on a red roof",
+    label: "Solar PV & water heating",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%282%29-iv6TtnlZ1DcAARpY8OQv5dxUnVFSyN.jpeg",
+    alt: "High-efficiency monocrystalline solar panel on a terracotta tiled roof",
     label: "Residential rooftop array",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.02-eptsmTa4APJeTeMfwzzKsMIgRwTHy5.jpeg",
-    alt: "Monocrystalline solar panel installed on a tiled roof",
-    label: "Tiled roof installation",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.00-ABwITGicjFeEvnLFxV5f7G6LO2YpYS.jpeg",
+    alt: "Long run of solar panels installed on a home roof overlooking a garden",
+    label: "Rooftop array, Manicaland",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%282%29-Q46re1EcFLlM7gLv2KViELC5BOjVK2.jpeg",
-    alt: "Large solar panel array on a tiled roof",
-    label: "High-output panel array",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.02-50znVIMu3xnP2t72aKVPRCzYcFyNDB.jpeg",
+    alt: "Monocrystalline solar panel neatly mounted on a tiled roof",
+    label: "Tiled-roof installation",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59-YQeo28d6VyHvFO2w72IOjiKUMT3OBU.jpeg",
-    alt: "Solar panels installed on a home roof with neighbouring houses",
-    label: "Whole-home system",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.54-rot7qZ1cEVZ6U5i7769RDlWScBoN0C.jpeg",
+    alt: "MUST hybrid inverter, distribution board and LiFePO4 battery module installed indoors",
+    label: "Inverter & battery setup",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.58-iNulXNmgkHtja9FPHUyLOoodZMaMRh.jpeg",
-    alt: "Solar panels alongside a solar geyser on a red tiled roof",
-    label: "Solar PV and water heating",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.01%20%282%29-dyRX6NiS3iKxtAWLDtqc4MJkkulEby.jpeg",
+    alt: "MUST solar inverter wired to a SAKO lithium battery power bank",
+    label: "Hybrid inverter & lithium storage",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.54-jTMwmmN57FdOi3WQk7elZBDAhqOkiN.jpeg",
-    alt: "MUST inverter and LiFePO4 battery module installed indoors",
-    label: "Inverter and battery setup",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.55-xNwUsHO9lrEHQ5sWZH3RPOEnZUQkRd.jpeg",
+    alt: "MUST hybrid inverter and battery module with live status indicators",
+    label: "Backup power system",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.56.01%20%281%29-EGzROlQBl2foF6fR1kIEeg5pjgTGhh.jpeg",
-    alt: "MUST solar inverter and SAKO lithium battery power bank",
-    label: "Hybrid inverter and lithium storage",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.56%20%281%29-Q33vyrybJ1fHdkjGKvDXiGtxpqeJE0.jpeg",
+    alt: "MUST inverter stacked above two SAKO lithium battery power banks",
+    label: "Stacked lithium battery bank",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%281%29-NQqbSHvA6szFohhaxRvUO0KuMk2jBI.jpeg",
-    alt: "Stacked SAKO lithium battery power banks with MUST inverter",
-    label: "Stacked battery storage",
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.59%20%281%29-671icpIi9ZRbF5VIkexrlAoL3bcOH3.jpeg",
+    alt: "High-capacity SAKO lithium storage paired with a MUST inverter",
+    label: "High-capacity storage",
+  },
+]
+
+export const team = [
+  {
+    name: "Our Lead Engineer",
+    role: "Founder & Lead Solar Engineer",
+    image:
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-12%20at%2009.55.57%20%281%29-GWf7l1neRwmt9lavgbHs3SV9XkKZYG.jpeg",
+    bio: "On site for every commissioning — designing, installing and testing each system personally so it performs for years.",
   },
 ]

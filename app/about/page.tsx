@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Target, Eye, Heart, CheckCircle2 } from "lucide-react"
+import { Target, Eye, Heart, CheckCircle2, Phone } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CtaSection } from "@/components/cta-section"
 import { Button } from "@/components/ui/button"
-import { gallery } from "@/lib/site"
+import { gallery, team, site } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "About | Solar Universe Mutare",
@@ -95,6 +95,58 @@ export default function AboutPage() {
                 <p className="mt-2 leading-relaxed text-muted-foreground">{v.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
+            The team
+          </span>
+          <h2 className="mt-2 font-heading text-balance text-3xl font-bold text-foreground sm:text-4xl">
+            The people behind every install
+          </h2>
+          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+            Real engineers on real rooftops. When you call Solar Universe, you speak to the same
+            people who design, fit and commission your system.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {team.map((member) => (
+            <figure
+              key={member.name}
+              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
+                  src={member.image || "/placeholder.svg"}
+                  alt={`${member.role} of Solar Universe on site`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                  <div className="font-heading text-lg font-bold text-white">{member.role}</div>
+                  <p className="mt-1 text-sm leading-relaxed text-white/80">{member.bio}</p>
+                </figcaption>
+              </div>
+            </figure>
+          ))}
+
+          <div className="flex flex-col justify-center rounded-2xl border border-dashed border-border bg-secondary/40 p-8 text-center">
+            <h3 className="font-heading text-lg font-bold text-foreground">Talk to a real engineer</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Have a question about your roof, your bill or your backup needs? We are happy to give
+              honest, no-pressure advice.
+            </p>
+            <a href={`tel:${site.phoneIntl}`} className="mt-6">
+              <Button className="bg-accent text-accent-foreground hover:bg-accent/90">
+                <Phone className="size-4 mr-2" />
+                Call {site.phone}
+              </Button>
+            </a>
           </div>
         </div>
       </section>

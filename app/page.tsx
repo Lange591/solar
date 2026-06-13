@@ -59,16 +59,16 @@ export default function HomePage() {
         <EnergyGrid />
 
         <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:py-28 lg:grid-cols-2 lg:items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 text-sm font-medium text-yellow-400 backdrop-blur-sm">
+          <div className="animate-rise">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-yellow-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
-              Solar & Electrical Experts in Mutare
+              Solar &amp; Electrical Experts in Mutare
             </div>
             <h1 className="mt-6 font-heading text-balance text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Powering Mutare with <span className="text-yellow-400">Clean, Reliable</span> Solar Energy
+              Powering Mutare with <span className="text-accent">Clean, Reliable</span> Solar Energy
             </h1>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-gray-300">
               From rooftop solar and battery backup to full electrical installations, Solar
@@ -76,7 +76,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/contact">
-                <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400 px-8 py-6 text-base rounded-full font-semibold shadow-lg shadow-yellow-500/25 transition-all duration-300 hover:scale-105">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-base rounded-full font-semibold shadow-lg shadow-accent/25 transition-all duration-300 hover:scale-[1.03]">
                   Get a Free Quote
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
@@ -88,10 +88,30 @@ export default function HomePage() {
                 </Button>
               </a>
             </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-400">
+              <span className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-accent" /> Certified engineers
+              </span>
+              <span className="flex items-center gap-2">
+                <BatteryCharging className="h-4 w-4 text-accent" /> Load-shedding ready
+              </span>
+              <span className="flex items-center gap-2">
+                <Leaf className="h-4 w-4 text-accent" /> 100% clean energy
+              </span>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl border border-yellow-500/20 shadow-2xl">
+          <div className="relative animate-rise [animation-delay:120ms]">
+            {/* Slow-rotating solar halo behind the image */}
+            <div
+              aria-hidden
+              className="animate-spin-slow absolute -inset-10 rounded-full opacity-60 blur-2xl"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, rgba(234,179,8,0.18), transparent 40%, rgba(234,179,8,0.12) 70%, transparent)",
+              }}
+            />
+            <div className="relative overflow-hidden rounded-3xl border border-accent/25 shadow-2xl ring-1 ring-white/10">
               <Image
                 src={gallery[0].src || "/placeholder.svg"}
                 alt={gallery[0].alt}
@@ -100,20 +120,34 @@ export default function HomePage() {
                 className="h-full w-full object-cover"
                 priority
               />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
-            <div className="absolute -bottom-6 -right-6 h-32 w-32 rounded-full bg-yellow-500/20 blur-3xl" />
-            <div className="absolute -top-6 -left-6 h-32 w-32 rounded-full bg-yellow-500/15 blur-3xl" />
+            {/* Floating credibility card */}
+            <div className="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-gray-900/80 px-4 py-3 shadow-xl backdrop-blur-md">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                <Sparkles className="size-5" />
+              </div>
+              <div>
+                <div className="font-heading text-lg font-bold leading-none text-white">150+</div>
+                <div className="mt-1 text-xs text-gray-400">Systems installed</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="relative border-t border-white/10">
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px px-4 sm:px-6 md:grid-cols-4">
-            {stats.map((s) => {
+          <div className="mx-auto grid max-w-6xl grid-cols-2 px-4 sm:px-6 md:grid-cols-4">
+            {stats.map((s, i) => {
               const Icon = s.icon
               return (
-                <div key={s.label} className="px-2 py-8 text-center">
-                  <Icon className="mx-auto h-8 w-8 text-yellow-400" />
-                  <div className="mt-2 font-heading text-3xl font-bold text-yellow-400 sm:text-4xl">
+                <div
+                  key={s.label}
+                  className={`px-2 py-8 text-center ${i !== 0 ? "border-l border-white/10" : ""} ${
+                    i === 2 ? "border-l-0 md:border-l" : ""
+                  }`}
+                >
+                  <Icon className="mx-auto h-8 w-8 text-accent" />
+                  <div className="mt-2 font-heading text-3xl font-bold text-accent sm:text-4xl">
                     {s.value}
                   </div>
                   <div className="mt-1 text-sm text-gray-400">{s.label}</div>

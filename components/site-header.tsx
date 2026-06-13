@@ -13,7 +13,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-36 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
         <nav className="hidden md:flex items-center gap-8">
@@ -54,7 +54,7 @@ export function SiteHeader() {
 
       <div
         className={cn(
-          "fixed inset-x-0 top-36 z-40 border-b border-border bg-background/95 backdrop-blur transition-all duration-300 md:hidden",
+          "fixed inset-x-0 top-20 z-40 border-b border-border bg-background/95 backdrop-blur transition-all duration-300 md:hidden",
           mobileMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         )}
       >

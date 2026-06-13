@@ -4,18 +4,24 @@ import { cn } from "@/lib/utils"
 
 type LogoProps = {
   className?: string
+  /** Tailwind height class, e.g. "h-12". Width scales automatically. */
+  sizeClassName?: string
 }
 
-export function Logo({ className }: LogoProps) {
+export function Logo({ className, sizeClassName = "h-12 md:h-14" }: LogoProps) {
   return (
-    <Link href="/" className={cn("flex items-center", className)}>
+    <Link
+      href="/"
+      aria-label="Solar Universe — home"
+      className={cn("inline-flex items-center transition-opacity hover:opacity-90", className)}
+    >
       <Image
-        src="/logo.png"
+        src="/logo-clean.png"
         alt="Solar Universe"
-        width={800}
-        height={200}
+        width={456}
+        height={324}
         priority
-        className="h-32 w-auto md:h-48 object-contain"
+        className={cn("w-auto object-contain", sizeClassName)}
       />
     </Link>
   )

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Phone, ArrowRight, Sparkles } from "lucide-react"
+import { Phone, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { site } from "@/lib/site"
 import { EnergyGrid } from "@/components/energy-grid"
@@ -10,7 +10,6 @@ export function CtaSection() {
       <EnergyGrid />
 
       <div className="relative mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 md:py-20">
-        <Sparkles className="mx-auto h-12 w-12 text-accent mb-4" />
         <h2 className="font-heading text-balance text-3xl font-bold text-primary-foreground sm:text-4xl">
           Ready to cut your power bills and beat load-shedding?
         </h2>

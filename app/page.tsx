@@ -19,14 +19,18 @@ import { Button } from "@/components/ui/button"
 import { CtaSection } from "@/components/cta-section"
 import { services, steps, gallery, site } from "@/lib/site"
 import { EnergyGrid } from "@/components/energy-grid"
+import { CountUp } from "@/components/count-up"
+import { SavingsCalculator } from "@/components/savings-calculator"
+import { Testimonials } from "@/components/testimonials"
+import { Faq } from "@/components/faq"
 
 const iconMap = { SunMedium, BatteryCharging, Droplets, Wrench, Zap, ClipboardCheck }
 
 const stats = [
-  { value: "150+", label: "Systems installed", icon: ShieldCheck },
-  { value: "10+", label: "Years experience", icon: Sparkles },
-  { value: "100%", label: "Clean energy", icon: Leaf },
-  { value: "24/7", label: "Backup power", icon: BatteryCharging },
+  { value: 150, suffix: "+", label: "Systems installed", icon: ShieldCheck },
+  { value: 10, suffix: "+", label: "Years experience", icon: Sparkles },
+  { value: 100, suffix: "%", label: "Clean energy", icon: Leaf },
+  { value: 24, suffix: "/7", label: "Backup power", icon: BatteryCharging },
 ]
 
 const reasons = [
@@ -102,7 +106,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative animate-rise [animation-delay:120ms]">
-            {/* Slow-rotating solar halo behind the image */}
+            {/* @ Lange coding */}
             <div
               aria-hidden
               className="animate-spin-slow absolute -inset-10 rounded-full opacity-60 blur-2xl"
@@ -122,7 +126,7 @@ export default function HomePage() {
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
             </div>
-            {/* Floating credibility card */}
+            {/* @ Lange coding */}
             <div className="absolute bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-gray-900/80 px-4 py-3 shadow-xl backdrop-blur-md sm:-bottom-5 sm:-left-5">
               <div className="flex size-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                 <Sparkles className="size-5" />
@@ -147,9 +151,11 @@ export default function HomePage() {
                   }`}
                 >
                   <Icon className="mx-auto h-8 w-8 text-accent" />
-                  <div className="mt-2 font-heading text-3xl font-bold text-accent sm:text-4xl">
-                    {s.value}
-                  </div>
+                  <CountUp
+                    end={s.value}
+                    suffix={s.suffix}
+                    className="mt-2 block font-heading text-3xl font-bold text-accent sm:text-4xl"
+                  />
                   <div className="mt-1 text-sm text-gray-400">{s.label}</div>
                 </div>
               )
@@ -270,6 +276,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <SavingsCalculator />
+
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
@@ -305,6 +313,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
+
+      <Faq />
 
       <CtaSection />
     </>

@@ -49,7 +49,7 @@
 }
 
 :root {
-  /* Brand palette: deep navy (logo wordmark) + warm solar amber (logo globe) */
+  /* @ Lange coding */
   --background: oklch(0.995 0.002 250);
   --foreground: oklch(0.22 0.045 260);
   --card: oklch(1 0 0);

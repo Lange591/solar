@@ -8,7 +8,7 @@ export function PageHero({
   description: string
 }) {
   return (
-    <section className="border-b border-border bg-primary">
+    <section className="border-b border-border bg-gradient-to-b from-primary to-primary/90">
       <div className="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 md:py-20">
         <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
           {eyebrow}

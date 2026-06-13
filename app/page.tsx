@@ -21,6 +21,8 @@ import { services, steps, gallery, site } from "@/lib/site"
 import { EnergyGrid } from "@/components/energy-grid"
 import { CountUp } from "@/components/count-up"
 import { SavingsCalculator } from "@/components/savings-calculator"
+import { LiveMonitor } from "@/components/live-monitor"
+import { Coverage } from "@/components/coverage"
 import { Testimonials } from "@/components/testimonials"
 import { Faq } from "@/components/faq"
 
@@ -278,6 +280,8 @@ export default function HomePage() {
 
       <SavingsCalculator />
 
+      <LiveMonitor />
+
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
@@ -315,6 +319,8 @@ export default function HomePage() {
       </section>
 
       <Testimonials />
+
+      <Coverage />
 
       <Faq />
 

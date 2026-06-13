@@ -1,16 +1,21 @@
 import Image from "next/image"
+import Link from "next/link"
 
-export function Logo({ className }: { className?: string }) {
+export default function Header() {
   return (
-    <div className={`flex items-center gap-3 ${className || ""}`}>
-      <Image
-        src="/logo-horizontal.svg"
-        alt="Solar Universe"
-        width={180}
-        height={48}
-        priority
-        className="h-10 w-auto"
-      />
-    </div>
+    <header className="border-b">
+      <div className="mx-auto flex h-20 max-w-7xl items-center px-6">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo.png" 
+            alt="Solar Universe"
+            width={240}
+            height={72}
+            className="h-auto w-auto"
+            priority
+          />
+        </Link>
+      </div>
+    </header>
   )
 }

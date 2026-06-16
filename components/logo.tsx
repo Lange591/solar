@@ -16,15 +16,17 @@ export function Logo({ className, sizeClassName = "h-12 md:h-14" }: LogoProps) {
       className={cn("inline-flex items-center transition-opacity hover:opacity-90", className)}
     >
       <Image
-        src="/logo-solar-universe.png"
+        src="/logo-clean.png"
         alt="Solar Universe"
-        width={1015}
-        height={448}
+        width={456}
+        height={324}
         priority
+        quality={100}
         className={cn(
-          // Crisp, high-resolution wordmark. A whisper-soft drop shadow lifts it
-          // off the page; a touch of saturation keeps the amber + navy vivid.
-          "w-auto object-contain [filter:saturate(1.08)_drop-shadow(0_1px_1px_rgb(11_42_74/0.15))]",
+          // Keep the original artwork, just render it sharper and more defined:
+          // a touch more contrast + saturation makes the navy and amber read
+          // crisply, and a hairline shadow lifts thin strokes off the page.
+          "w-auto object-contain [filter:contrast(1.18)_saturate(1.3)_brightness(1.02)_drop-shadow(0_1px_1.5px_rgb(11_42_74/0.22))]",
           sizeClassName,
         )}
       />

@@ -25,6 +25,8 @@ import { LiveMonitor } from "@/components/live-monitor"
 import { Coverage } from "@/components/coverage"
 import { Testimonials } from "@/components/testimonials"
 import { Faq } from "@/components/faq"
+import { Reveal } from "@/components/reveal"
+import { Parallax } from "@/components/parallax"
 
 const iconMap = { SunMedium, BatteryCharging, Droplets, Wrench, Zap, ClipboardCheck }
 
@@ -109,14 +111,16 @@ export default function HomePage() {
 
           <div className="relative animate-rise [animation-delay:120ms]">
             {/* @ Lange coding */}
-            <div
-              aria-hidden
-              className="animate-spin-slow absolute -inset-10 rounded-full opacity-60 blur-2xl"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, rgba(234,179,8,0.18), transparent 40%, rgba(234,179,8,0.12) 70%, transparent)",
-              }}
-            />
+            <Parallax speed={0.28} className="pointer-events-none absolute -inset-10">
+              <div
+                aria-hidden
+                className="animate-spin-slow absolute inset-0 rounded-full opacity-60 blur-2xl"
+                style={{
+                  background:
+                    "conic-gradient(from 0deg, rgba(234,179,8,0.18), transparent 40%, rgba(234,179,8,0.12) 70%, transparent)",
+                }}
+              />
+            </Parallax>
             <div className="relative overflow-hidden rounded-3xl border border-accent/25 shadow-2xl ring-1 ring-white/10">
               <Image
                 src={gallery[0].src || "/placeholder.svg"}
@@ -167,7 +171,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
             What we do
           </span>
@@ -177,14 +181,15 @@ export default function HomePage() {
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
             One trusted team for everything from panels and batteries to wiring and water heating.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
+          {services.map((service, i) => {
             const Icon = iconMap[service.icon as keyof typeof iconMap]
             return (
-              <div
+              <Reveal
                 key={service.title}
+                delay={(i % 3) * 90}
                 className="group rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="flex size-12 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
@@ -196,7 +201,7 @@ export default function HomePage() {
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {service.summary}
                 </p>
-              </div>
+              </Reveal>
             )
           })}
         </div>
@@ -214,7 +219,7 @@ export default function HomePage() {
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div className="overflow-hidden rounded-2xl border border-border shadow-md">
+            <Reveal direction="right" className="overflow-hidden rounded-2xl border border-border shadow-md">
               <Image
                 src={gallery[6].src || "/placeholder.svg"}
                 alt={gallery[6].alt}
@@ -222,8 +227,8 @@ export default function HomePage() {
                 height={620}
                 className="h-full w-full object-cover"
               />
-            </div>
-            <div>
+            </Reveal>
+            <Reveal direction="left" delay={120}>
               <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
                 Why Solar Universe
               </span>
@@ -249,23 +254,27 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
             How it works
           </span>
           <h2 className="mt-2 font-heading text-balance text-3xl font-bold text-foreground sm:text-4xl">
             Going solar in four simple steps
           </h2>
-        </div>
+        </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <div key={step.title} className="relative rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md">
+            <Reveal
+              key={step.title}
+              delay={i * 90}
+              className="relative rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md"
+            >
               <div className="flex size-10 items-center justify-center rounded-full bg-accent font-heading text-lg font-bold text-accent-foreground">
                 {i + 1}
               </div>
@@ -273,7 +282,7 @@ export default function HomePage() {
                 {step.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -284,7 +293,7 @@ export default function HomePage() {
 
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
                 Recent work
@@ -299,11 +308,12 @@ export default function HomePage() {
                 <ArrowRight className="size-4 ml-2" />
               </Button>
             </Link>
-          </div>
+          </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {gallery.slice(0, 4).map((item) => (
-              <div
+            {gallery.slice(0, 4).map((item, i) => (
+              <Reveal
                 key={item.src}
+                delay={i * 80}
                 className="group relative aspect-square overflow-hidden rounded-xl border border-border"
               >
                 <Image
@@ -312,7 +322,7 @@ export default function HomePage() {
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

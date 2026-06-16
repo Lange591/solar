@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react"
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 type Direction = "up" | "down" | "left" | "right" | "fade"
@@ -13,6 +13,12 @@ type RevealProps = {
   delay?: number
   /* Animation duration in ms */
   duration?: number
+  /* Travel distance in px for the entrance slide */
+  distance?: number
+  /* Add a subtle scale-up for a premium "lift" feel */
+  scale?: boolean
+  /* Add a subtle blur-in for a soft focus-pull effect */
+  blur?: boolean
   className?: string
   /* Render as a different element, e.g. "section" or "li" */
   as?: ElementType
@@ -20,19 +26,14 @@ type RevealProps = {
   once?: boolean
 }
 
-const offsets: Record<Direction, string> = {
-  up: "translate-y-8",
-  down: "-translate-y-8",
-  left: "translate-x-8",
-  right: "-translate-x-8",
-  fade: "translate-y-0",
-}
-
 export function Reveal({
   children,
   direction = "up",
   delay = 0,
-  duration = 700,
+  duration = 800,
+  distance = 36,
+  scale = false,
+  blur = true,
   className,
   as: Tag = "div",
   once = true,
@@ -62,26 +63,42 @@ export function Reveal({
           }
         })
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     )
 
     observer.observe(node)
     return () => observer.disconnect()
   }, [once])
 
+  // Build the hidden-state transform from direction + distance.
+  const hiddenTransform = (() => {
+    const parts: string[] = []
+    if (direction === "up") parts.push(`translateY(${distance}px)`)
+    if (direction === "down") parts.push(`translateY(${-distance}px)`)
+    if (direction === "left") parts.push(`translateX(${distance}px)`)
+    if (direction === "right") parts.push(`translateX(${-distance}px)`)
+    if (scale) parts.push("scale(0.96)")
+    return parts.length ? parts.join(" ") : "translateZ(0)"
+  })()
+
+  const style: CSSProperties = {
+    transitionProperty: "opacity, transform, filter",
+    transitionDuration: `${duration}ms`,
+    transitionDelay: `${delay}ms`,
+    transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : hiddenTransform,
+    filter: visible || !blur ? "blur(0px)" : "blur(8px)",
+  }
+
   return (
     <Tag
       ref={ref as never}
       className={cn(
-        "motion-reduce:!opacity-100 motion-reduce:!translate-x-0 motion-reduce:!translate-y-0 will-change-[opacity,transform] ease-[cubic-bezier(0.22,1,0.36,1)]",
-        visible ? "opacity-100 translate-x-0 translate-y-0" : cn("opacity-0", offsets[direction]),
+        "will-change-[opacity,transform,filter] motion-reduce:!opacity-100 motion-reduce:!blur-0 motion-reduce:!transform-none",
         className,
       )}
-      style={{
-        transitionProperty: "opacity, transform",
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
-      }}
+      style={style}
     >
       {children}
     </Tag>

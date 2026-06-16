@@ -225,8 +225,19 @@ input:focus, select:focus, textarea:focus {
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchored scrolling so targets clear the sticky header */
+  scroll-padding-top: 6rem;
 }
 
 button, a {
   transition: all 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
 }

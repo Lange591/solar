@@ -21,10 +21,12 @@ export function Logo({ className, sizeClassName = "h-12 md:h-14" }: LogoProps) {
         width={456}
         height={324}
         priority
+        quality={100}
         className={cn(
-          // Boost saturation/contrast so the navy + amber brand colors read crisp
-          // and vivid on light surfaces, with a faint shadow to lift it off the page.
-          "w-auto object-contain [filter:saturate(1.35)_contrast(1.12)_brightness(1.02)_drop-shadow(0_1px_2px_rgb(0_0_0/0.18))]",
+          // Keep the original artwork, just render it sharper and more defined:
+          // a touch more contrast + saturation makes the navy and amber read
+          // crisply, and a hairline shadow lifts thin strokes off the page.
+          "w-auto object-contain [filter:contrast(1.18)_saturate(1.3)_brightness(1.02)_drop-shadow(0_1px_1.5px_rgb(11_42_74/0.22))]",
           sizeClassName,
         )}
       />

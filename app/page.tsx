@@ -189,7 +189,8 @@ export default function HomePage() {
             return (
               <Reveal
                 key={service.title}
-                delay={(i % 3) * 90}
+                delay={(i % 3) * 100}
+                scale
                 className="group rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="flex size-12 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
@@ -219,14 +220,16 @@ export default function HomePage() {
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <Reveal direction="right" className="overflow-hidden rounded-2xl border border-border shadow-md">
-              <Image
-                src={gallery[6].src || "/placeholder.svg"}
-                alt={gallery[6].alt}
-                width={720}
-                height={620}
-                className="h-full w-full object-cover"
-              />
+            <Reveal direction="right" scale className="overflow-hidden rounded-2xl border border-border shadow-md">
+              <Parallax speed={0.12}>
+                <Image
+                  src={gallery[6].src || "/placeholder.svg"}
+                  alt={gallery[6].alt}
+                  width={720}
+                  height={620}
+                  className="h-[112%] w-full -translate-y-[6%] object-cover"
+                />
+              </Parallax>
             </Reveal>
             <Reveal direction="left" delay={120}>
               <span className="font-heading text-sm font-semibold uppercase tracking-wider text-accent">
@@ -272,7 +275,8 @@ export default function HomePage() {
           {steps.map((step, i) => (
             <Reveal
               key={step.title}
-              delay={i * 90}
+              delay={i * 100}
+              scale
               className="relative rounded-xl border border-border bg-card p-6 transition-all hover:shadow-md"
             >
               <div className="flex size-10 items-center justify-center rounded-full bg-accent font-heading text-lg font-bold text-accent-foreground">
@@ -313,7 +317,8 @@ export default function HomePage() {
             {gallery.slice(0, 4).map((item, i) => (
               <Reveal
                 key={item.src}
-                delay={i * 80}
+                delay={i * 90}
+                scale
                 className="group relative aspect-square overflow-hidden rounded-xl border border-border"
               >
                 <Image
